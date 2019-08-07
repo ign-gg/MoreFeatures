@@ -287,23 +287,11 @@ public class EntityArmorStand extends EntityLiving implements InventoryHolder {
     }
 
     private int getArmorSlot( ItemArmor armorItem ) {
-        if ( armorItem instanceof ItemHelmetLeather ||
-                armorItem instanceof ItemHelmetGold ||
-                armorItem instanceof ItemHelmetChain ||
-                armorItem instanceof ItemHelmetIron ||
-                armorItem instanceof ItemHelmetDiamond ) {
+        if ( armorItem.isHelmet()) {
             return 0;
-        } else if ( armorItem instanceof ItemChestplateLeather ||
-                armorItem instanceof ItemChestplateGold ||
-                armorItem instanceof ItemChestplateChain ||
-                armorItem instanceof ItemChestplateIron ||
-                armorItem instanceof ItemChestplateDiamond ) {
+        } else if ( armorItem.isChestplate() ) {
             return 1;
-        } else if ( armorItem instanceof ItemLeggingsLeather ||
-                armorItem instanceof ItemLeggingsGold ||
-                armorItem instanceof ItemLeggingsChain ||
-                armorItem instanceof ItemLeggingsIron ||
-                armorItem instanceof ItemLeggingsDiamond ) {
+        } else if ( armorItem.isLeggings()) {
             return 2;
         } else {
             return 3;
