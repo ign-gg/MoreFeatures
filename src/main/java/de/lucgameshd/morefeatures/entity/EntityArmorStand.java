@@ -112,7 +112,7 @@ public class EntityArmorStand extends EntityLiving implements InventoryHolder {
 
             if ( flag && item instanceof ItemArmor ) {
                 ItemArmor itemArmor = (ItemArmor) item;
-                i = this.getArmorSlot( itemArmor );
+                i = getArmorSlot( itemArmor );
                 isArmorSlot = true;
             }
 
@@ -180,10 +180,11 @@ public class EntityArmorStand extends EntityLiving implements InventoryHolder {
             } else {
                 this.equipmentInventory.setItem( slot, handItem );
             }
+            int index = player.getInventory().getHeldItemIndex();
             Server.getInstance().getScheduler().scheduleDelayedTask( new Task() {
                 @Override
                 public void onRun( int i ) {
-                    player.getInventory().decreaseCount( player.getInventory().getHeldItemIndex() );
+                    player.getInventory().decreaseCount( index );
                     player.getInventory().addItem( item );
                 }
             }, 1 );
@@ -260,7 +261,9 @@ public class EntityArmorStand extends EntityLiving implements InventoryHolder {
                     if ( level.getGameRules().getBoolean( GameRule.DO_ENTITY_DROPS ) ) {
                         this.level.dropItem( this, new ItemArmorStand() );
                         this.equipmentInventory.getContents().values().forEach( items -> this.level.dropItem( this, items ) );
+                        this.equipmentInventory.clearAll();
                         this.armorInventory.getContents().values().forEach( items -> this.level.dropItem( this, items ) );
+                        this.armorInventory.clearAll();
                     }
                 }
             }
@@ -288,7 +291,7 @@ public class EntityArmorStand extends EntityLiving implements InventoryHolder {
         return "ArmorStand";
     }
 
-    private int getArmorSlot( ItemArmor armorItem ) {
+    private static int getArmorSlot( ItemArmor armorItem ) {
         if ( armorItem.isHelmet()) {
             return 0;
         } else if ( armorItem.isChestplate() ) {

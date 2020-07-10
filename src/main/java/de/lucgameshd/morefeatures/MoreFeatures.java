@@ -10,7 +10,7 @@ public class MoreFeatures extends PluginBase {
 
     @Override
     public void onLoad() {
-        this.getLogger().info( "Loading MoreFeature Plugin..." );
+        //this.getLogger().info( "Loading MoreFeature Plugin..." );
         Entity.registerEntity( "ArmorStand", EntityArmorStand.class );
 
         //Register items
@@ -18,7 +18,7 @@ public class MoreFeatures extends PluginBase {
         list[Item.ARMOR_STAND] = ItemArmorStand.class;
     }
 
-    @Override
+    /*@Override
     public void onEnable() {
         this.getLogger().info( "The plugin has been successfully loaded!" );
     }
@@ -26,5 +26,5 @@ public class MoreFeatures extends PluginBase {
     @Override
     public void onDisable() {
 
-    }
+    }*/
 }
